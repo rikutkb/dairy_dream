@@ -1,0 +1,11 @@
+<% provide(:title, 'User一覧') %>
+
+<h1>User一覧</h1>
+
+<% @users.each do |user| %>
+    <ul>
+        <li>
+            <%= user.name %>
+        </li>
+    </ul>
+<% end %>

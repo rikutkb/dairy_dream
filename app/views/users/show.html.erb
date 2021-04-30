@@ -1,2 +1,21 @@
+<% provide(:title,'ユーザ詳細') %>
+
 <h1><%= @user.name %>のユーザページ</h1>
-<%= @user.email %>
+
+<h1>Diary Dream App</h1>
+
+<% if @articles.empty? then %>
+    公開されている記事はありません。<br>
+<% else %>
+    以下の記事が公開されています
+    <% @articles.each do |article| %>
+        <ul>
+            <li>
+                <%= article.content %>
+            </li>
+        </ul>
+    <% end %>
+<% end %>
+
+<%= link_to '新規投稿', '/diaries/new' %>
+
