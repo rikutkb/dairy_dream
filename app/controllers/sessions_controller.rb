@@ -7,11 +7,13 @@ class SessionsController < ApplicationController
       login(user)
       redirect_to user
     else
-      flash[:danger] = 'invalid name or password'
+      flash.now[:danger] = 'invalid name or password'
       render 'new'
     end
   end
   def destroy
+    logout
+    redirect_to root_url
   end
 
   def session_params

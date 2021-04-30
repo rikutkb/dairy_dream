@@ -16,6 +16,8 @@ services:
       - .:/dairy_dream
     ports:
       - "3300:3300"
+    tty: true
+    stdin_open: true
     links:
       - db
 
