@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/' =>"static_pages#home"
+  root to: "static_pages#home"
   get 'help' =>"static_pages#help"
   get 'about' => "static_pages#about"
   get 'news' => "static_pages#news"
@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'signup' => "users#new"
   get 'login' =>"sessions#new"
   post 'login' =>"sessions#create"
-  get 'logout' =>"session#destroy"
+  delete 'logout' =>"sessions#destroy"
   resources :users,only: [:index,:show,:create,:edit]
 
   resources :articles, only: [:index,:show,:create,:edit,:new]

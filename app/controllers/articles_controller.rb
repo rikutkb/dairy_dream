@@ -1,11 +1,15 @@
 class ArticlesController < ApplicationController
     before_action :logged_in_user,only:[:destroy,:create]
-    before_action :set_article,only:[:show]
+    before_action :set_article,only:[:show,destroy]
     def index
-      @articles = Article.all
+      @articles = Article.all.where(private:false)
     end
     def new
-        @article = current_user.articles.new
+        if logged_in?
+            @article = current_user.articles.new
+        else
+            redirect_to root_path
+        end
 
     end
     def create
@@ -19,12 +23,19 @@ class ArticlesController < ApplicationController
   
     end
     def edit
+      if logged_in? && @article.id == current_user.id
+        @article
+      else
+      end
     end
     def show
         
     end
     def destroy
-      @article.destroy
+      if logged_in? && @article.id == current_user.id
+        @article.destroy
+      else
+      end
       
     end
     private
