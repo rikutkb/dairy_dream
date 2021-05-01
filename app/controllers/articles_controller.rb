@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
     before_action :logged_in_user,only:[:destroy,:create]
-    before_action :set_article,only:[:show,destroy]
+    before_action :set_article,only:[:show,:destroy]
     def index
       @articles = Article.all.where(private:false)
     end
@@ -33,7 +33,6 @@ class ArticlesController < ApplicationController
     end
     def destroy
       if logged_in? && @article.id == current_user.id
-        @article.destroy
       else
       end
       
