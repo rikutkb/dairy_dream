@@ -1,2 +1,0 @@
-class TagscontrollerController < ApplicationController
-end

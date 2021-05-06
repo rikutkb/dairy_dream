@@ -1,0 +1,11 @@
+<% provide(:title, 'Tag一覧') %>
+
+<h1>Tag一覧</h1>
+
+<% @tags.each do |tag| %>
+    <ul>
+        <li>
+            <%= tag.name %>
+        </li>
+    </ul>
+<% end %>
