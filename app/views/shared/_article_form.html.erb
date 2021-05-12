@@ -1,8 +1,12 @@
 <div class="col-md-6 col-md-offset-3">
    <%= form_with model: @article do |f| %>
         <div class="field">
-            <%= render 'shared/tag_form' %>
-
+            <input type=form id="tag_place" placeholder="場所のタグを入力してください" style="width: 250px;"/>
+            <ul id="place_result">
+            </ul>
+            <input type=form id="tag_person" placeholder="人のタグを入力してください" style="width: 250px;"/>
+            <ul id="person_result">
+            </ul>
             <div class="form-group">
                 <%= f.label :内容 ,class:'form-control' %>
                 <%= f.text_area :content ,size: "50x6" %>
