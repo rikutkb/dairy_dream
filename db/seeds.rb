@@ -34,8 +34,4 @@ User.all.each do |user|
         name:'父',
         kind:1
     )
-    user.tags.create!(
-        name:'田中',
-        kind:1
-    )
 end
