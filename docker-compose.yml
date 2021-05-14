@@ -1,21 +1,16 @@
 version: '3'
 services:
-  db-data:
-    container_name: mysql-data
-    image: busybox
-    volumes:
-      - ./mysql-data/mysql:/var/lib/mysql:rw
   db:
-    container_name: mysql-db
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: root
-    volumes_from:
-      - db-data
+    volumes:
+      - ./mysql-data:/var/lib/mysql
     ports:
       -  "3305:3305"
     user: "1000:50"
+
   app:
     build: .
     command: rails s -p 3300 -b '0.0.0.0'
