@@ -9,6 +9,7 @@ services:
       - ./mysql-data:/var/lib/mysql
     ports:
       -  "3305:3305"
+    user: 1000:1000
   app:
     build: .
     command: rails s -p 3300 -b '0.0.0.0'
