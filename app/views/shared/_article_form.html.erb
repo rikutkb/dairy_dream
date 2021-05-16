@@ -3,13 +3,13 @@
         <div class="field">
             <div class="form-group">
                 <%= f.label :場所タグ ,class:'form-control' %>
-                <select class="js-tag_place" multiple:true style="width: 250px;">
-                </select>
+                <%= f.collection_select :place_tag_ids, tag, :id, :name, { include_blank: "" }, multiple: true, class: "form-control js-tag_place" %>
+
             </div>
             <div class="form-group">
             <%= f.label :人物タグ ,class:'form-control' %>
-            <select class="js-tag_person" id="person" multiple:true style="width: 250px;">
-            </select>
+            <%= f.collection_select :person_tag_ids, tag, :id, :name, { include_blank: "" }, multiple: true, class: "form-control js-tag_person" %>
+
             </div>
 
 

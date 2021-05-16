@@ -13,12 +13,12 @@
 ActiveRecord::Schema.define(version: 2021_05_01_052053) do
 
   create_table "article_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "article_id"
     t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_article_tags_on_article_id"
     t.index ["tag_id"], name: "index_article_tags_on_tag_id"
-    t.index ["user_id"], name: "index_article_tags_on_user_id"
   end
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 2021_05_01_052053) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "article_tags", "articles"
   add_foreign_key "article_tags", "tags"
-  add_foreign_key "article_tags", "users"
   add_foreign_key "articles", "users"
   add_foreign_key "tags", "users"
 end

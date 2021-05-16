@@ -15,6 +15,14 @@ class ArticlesController < ApplicationController
     def create
       @article = current_user.articles.build(post_params)
       if @article.save
+        place_tags = post_params_with_tags[:place_tag_ids]
+        if !place_tags.empty?
+          @article.tags_save(place_tags)
+        end
+        person_tags = post_params_with_tags[:person_tag_ids]
+        if !person_tags.empty?
+          @article.tags_save(person_tags)
+        end
         flash[:success] = "作成できました"
         redirect_to root_url
       else
@@ -40,6 +48,9 @@ class ArticlesController < ApplicationController
     private
       def post_params
         params.require(:article).permit(:content,:day,:memo,:sleep_n)
+      end
+      def post_params_with_tags
+        params.require(:article).permit(:content,:day,:memo,:sleep_n,place_tag_ids: [],person_tag_ids: [])
       end
       def set_article
         @article = Article.find(params[:id])
