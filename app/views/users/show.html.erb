@@ -11,7 +11,9 @@
     <% @articles.each do |article| %>
         <ul>
             <li>
-                <%= article.content %>
+                <%= link_to article.content,article %>
+                作成日時：<%= article.created_at %>
+
             </li>
         </ul>
     <% end %>

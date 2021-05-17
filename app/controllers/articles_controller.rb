@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
       end
     end
     def show
-        
+        @article = Article.find(params[:id])
     end
     def destroy
       if logged_in? && @article.id == current_user.id
