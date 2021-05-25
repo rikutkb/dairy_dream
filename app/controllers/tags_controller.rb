@@ -3,11 +3,7 @@ class TagsController < ApplicationController
     before_action :logged_in_user,only:[:create,:search,:index]
 
     def index
-        @tag = current_user.tags.create(
-            name:"test",
-            kind:0
-        )
-        render json: @tag
+        @tags = current_user.tags
     end
     def show
     end
