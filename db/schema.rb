@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_01_052053) do
+ActiveRecord::Schema.define(version: 2021_05_25_150814) do
 
   create_table "article_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "article_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_05_01_052053) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "citations", default: 0
     t.index ["user_id"], name: "index_tags_on_user_id"
   end
 

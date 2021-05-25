@@ -3,7 +3,7 @@ class TagsController < ApplicationController
     before_action :logged_in_user,only:[:create,:search,:index]
 
     def index
-        @tags = current_user.tags
+        @tags = current_user.tags.order('count DESC')
     end
     def show
     end

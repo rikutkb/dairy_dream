@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
   belongs_to :user
-  default_scope->{order(created_at: :desc)}
+  default_scope->{order(created_at: :citations)}
   has_many :article_tags
   has_many :tags ,through: :article_tags
   validates:content,presence:true,length:{maximum:1000}
@@ -11,6 +11,7 @@ class Article < ApplicationRecord
     tag_list.each do |tag|
       if !tag.nil?
         inspected_tag = Tag.where(id:tag)
+        inspected_tag.increment(:citations,1)
         self.tags<<inspected_tag
       else
       end

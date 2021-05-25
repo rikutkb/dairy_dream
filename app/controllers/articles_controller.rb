@@ -41,6 +41,13 @@ class ArticlesController < ApplicationController
     end
     def destroy
       if logged_in? && @article.id == current_user.id
+        tags = @article.tags
+        if @article.destroy
+          tags.each do |tag|
+            tag.decrement(:citations,1)
+          end
+        end
+
       else
       end
       
