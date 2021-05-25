@@ -5,3 +5,8 @@ content:<%= @article.content %>
 <br>
 memo:<%= @article.memo %>
 <br>
+場所タグ:
+<%= render partial:'tags/tags',locals:{tags:@tags,kind:0} %>
+<br>
+人物タグ:
+<%= render partial:'tags/tags',locals:{tags:@tags,kind:1} %>

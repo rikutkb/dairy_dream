@@ -38,6 +38,7 @@ class ArticlesController < ApplicationController
     end
     def show
         @article = Article.find(params[:id])
+        @tags = @article.tags
     end
     def destroy
       if logged_in? && @article.id == current_user.id
@@ -54,10 +55,10 @@ class ArticlesController < ApplicationController
     end
     private
       def post_params
-        params.require(:article).permit(:content,:day,:memo,:sleep_n)
+        params.require(:article).permit(:content,:day,:memo,:sleep_n,:private)
       end
       def post_params_with_tags
-        params.require(:article).permit(:content,:day,:memo,:sleep_n,place_tag_ids: [],person_tag_ids: [])
+        params.require(:article).permit(:content,:day,:memo,:sleep_n,:private,place_tag_ids: [],person_tag_ids: [])
       end
       def set_article
         @article = Article.find(params[:id])

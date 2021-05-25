@@ -1,11 +1,14 @@
 class TagsController < ApplicationController
     protect_from_forgery :except => [:create]
-    before_action :logged_in_user,only:[:create,:search,:index]
+    before_action :logged_in_user,only:[:create,:search,:index,:show]
 
     def index
-        @tags = current_user.tags.order('count DESC')
+        @tags = current_user.tags
     end
     def show
+        @tag = current_user.tags.where(id:params[:id])
+        @articles = @tag.articles
+
     end
     def create
         @tag = current_user.tags.create(

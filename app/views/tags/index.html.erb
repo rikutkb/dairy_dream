@@ -3,23 +3,6 @@
 <h1>Tag一覧</h1>
 
 場所:<br>
-<% @tags.each do |tag| %>
-    <% if tag.kind == 0 then %>
-    <ul>
-        <li>
-            <%= tag.name %>
-        </li>
-    </ul>
-    <% end %>
-<% end %>
-人物:
-<br>
-<% @tags.each do |tag| %>
-    <% if tag.kind == 1 then %>
-    <ul>
-        <li>
-            <%= tag.name %>
-        </li>
-    </ul>
-    <% end %>
-<% end %>
+<%= render partial:'tags',locals:{tags:@tags,kind:0} %>
+人物:<br>
+<%= render partial:'tags',locals:{tags:@tags,kind:1} %>
