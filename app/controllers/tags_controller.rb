@@ -6,8 +6,11 @@ class TagsController < ApplicationController
         @tags = current_user.tags
     end
     def show
-        @tag = current_user.tags.where(id:params[:id])
-        @articles = @tag.articles
+        @tag = current_user.tags.find_by(id:params[:id])
+        if !@tag.nil?
+            @articles = @tag.articles
+        else
+        end
 
     end
     def create

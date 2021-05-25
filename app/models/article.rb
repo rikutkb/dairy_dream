@@ -11,9 +11,7 @@ class Article < ApplicationRecord
       if !tag.nil?
         inspected_tag = Tag.find_by(id:tag)
         if !inspected_tag.nil?
-          
-          puts inspected_tag.kind
-          puts inspected_tag.name
+          inspected_tag.increment!(:citations,1)
           self.tags.push(inspected_tag)
         end
       else
