@@ -2,7 +2,7 @@ class Article < ApplicationRecord
   belongs_to :user
   default_scope->{order(created_at: :DESC)}
   has_many :article_tags
-  has_many :tags ,through: :article_tags
+  has_many :tags ,through: :article_tags, dependent: :destroy
   validates:content,presence:true,length:{maximum:1000}
   validates:memo,length:{maximum:1000}
   validates:sleep_n,numericality:{only_integer:true,greater_than_or_equal_to:0}

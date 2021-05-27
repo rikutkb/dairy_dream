@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-    before_action :logged_in_user,only:[:destroy,:create]
-    before_action :set_article,only:[:show,:destroy]
+    before_action :logged_in_user,only:[:destroy,:create,:edit,:update]
+    before_action :set_article,only:[:show,:destroy,:edit,:update]
     def index
       @articles = Article.all.where(private:false)
     end
@@ -28,25 +28,31 @@ class ArticlesController < ApplicationController
       else
         render 'new'
       end
-  
     end
     def edit
-      if logged_in? && @article.id == current_user.id
+      if logged_in? && @article.user_id == current_user.id
         @article
       else
       end
     end
+    def update
+      @article.update(post_params)
+      flash[:success] = "更新できました"
+      redirect_to users_path
+    end
     def show
-        @article = Article.find(params[:id])
         @tags = @article.tags
     end
     def destroy
-      if logged_in? && @article.id == current_user.id
+
+      if logged_in? && @article.user_id == current_user.id
         tags = @article.tags
         if @article.destroy
           tags.each do |tag|
             tag.decrement(:citations,1)
           end
+          redirect_to request.referrer
+
         end
 
       else
@@ -62,6 +68,6 @@ class ArticlesController < ApplicationController
       end
       def set_article
         @article = Article.find(params[:id])
-        
+
       end
 end

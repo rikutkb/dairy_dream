@@ -10,3 +10,5 @@ memo:<%= @article.memo %>
 <br>
 人物タグ:
 <%= render partial:'tags/tags',locals:{tags:@tags,kind:1} %>
+<br>
+<%= link_to 'edit',edit_article_path(@article),method: :get %>
