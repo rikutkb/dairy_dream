@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup 
-    @user = User.new(name:"test_user",email:"test@test.com",password:"aaaaa")
+    @user = User.new(name:"test_user",password:"aaaaa")
   end
   test "should be valid" do
     assert @user.valid?
@@ -21,7 +21,6 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_not dup_user.valid?
     dup_user.name ="test_user2"
-    dup_user.email="test2@test.com"
     assert dup_user.valid?
   end
   test "password should be more than 5 and less than 50" do
