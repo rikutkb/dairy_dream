@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
     before_action :logged_in_user,only:[:destroy,:create,:edit,:update]
     before_action :set_article,only:[:show,:destroy,:edit,:update]
     def index
-      @articles = Article.all.where(private:false)
+      @articles = current_user.articles
     end
     def new
         if logged_in?
@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
           @article.tags_save(person_tags)
         end
         flash[:success] = "作成できました"
-        redirect_to root_url
+        redirect_to articles_path
       else
         render 'new'
       end
