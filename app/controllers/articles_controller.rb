@@ -15,7 +15,9 @@ class ArticlesController < ApplicationController
     def create
       @article = current_user.articles.build(post_params)
       if @article.save
+        logger.debug "create start"
         place_tags = post_params_with_tags[:place_tag_ids]
+        logger.debug "#{place_tags}"
         if !place_tags.empty?
           @article.tags_save(place_tags)
         end

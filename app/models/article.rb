@@ -10,6 +10,8 @@ class Article < ApplicationRecord
     tag_list.each do |tag|
       if !tag.nil?
         inspected_tag = Tag.find_by(id:tag)
+        
+        logger.debug "tag ass#{inspected_tag}"
         if !inspected_tag.nil?
           inspected_tag.increment!(:citations,1)
           self.tags.push(inspected_tag)
