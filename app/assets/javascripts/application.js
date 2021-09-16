@@ -17,3 +17,21 @@
 //= require turbolinks
 //= require_tree .
 //= require select2
+//= require moment
+//= require fullcalendar
+
+$(function () {
+    function eventCalendar() {
+        return $('#calendar').fullCalendar({});
+    };
+    function clearCalendar() {
+        $('#calendar').html('');
+    };
+    $(document).on('turbolinks:load', function () {
+        eventCalendar();
+    });
+    $(document).on('turbolinks:before-cache', clearCalendar);
+    $('#calendar').fullCalendar({
+        events: 'http://localhost:3300/dream_app/articles'
+    });
+});
