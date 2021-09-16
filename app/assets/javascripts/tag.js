@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function(){
         var $select = $(this);
         $.ajax( {
             type: 'post',
-            url: '../tags',
+            url: '/dream_app/tags',
             data: { keyword: e.params.data.id ,kind:kind},
             dataType: 'json'
         } ).done( function( json ) {
@@ -18,7 +18,7 @@ $(document).on('turbolinks:load', function(){
     }
     function ajax_tmp(kind){
       return ajax_obj = {
-        url: "../tags/search",
+        url: "/dream_app/tags/search",
         dataType: 'json',
         delay: 250,
         data:function(params){
