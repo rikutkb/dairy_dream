@@ -9,10 +9,7 @@
             <div class="form-group">
             <%= f.label :人物タグ ,class:'form-control' %>
             <%= f.collection_select :person_tag_ids, tag, :id, :name, { include_blank: "" }, multiple: true, class: "form-control js-tag_person"%>
-            <% tags.each do |tag| %>
-                <%= tag.id %>
-                <%= tag.kind %>
-            <% end %>
+ 
             </div>
             <input name="arr_json" type="hidden" value=<%= tags.to_json.html_safe %> class='arr_json'/>
 
