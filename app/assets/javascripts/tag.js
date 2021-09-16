@@ -1,5 +1,25 @@
+$(".js-tag_place").val([{id:0,text:"jfa"}]).trigger("change");
 
 $(document).on('turbolinks:load', function(){
+
+    function set_tags(){
+      var arrJson = $('.arr_json').val();
+      var arr = JSON.parse(arrJson);
+      arr.forEach(tag=>{
+        var data = {
+          id:tag.id,
+          text:tag.name
+        };
+        var opt = new Option(tag.name,tag.id,true,true);
+        if(tag.id==0){
+          $(".js-tag_person").append(opt).trigger('change');
+        }else{
+          $(".js-tag_place").append(opt).trigger('change');
+        }
+      })
+    }
+
+    set_tags();
     function register_tag(e,kind){
       if( e.params.data.isNewFlag ) {
         var $select = $(this);

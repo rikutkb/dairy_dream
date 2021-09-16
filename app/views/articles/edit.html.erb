@@ -6,7 +6,7 @@
       <%= render 'shared/user_info' %>
     </section>
     <section class="article_form">
-      <%= render 'shared/article_form_edit', article:@article%>
+      <%= render 'shared/article_form_edit', article:@article,tags:@article.tags%>
     </section>
   </div>
 <% else %>
