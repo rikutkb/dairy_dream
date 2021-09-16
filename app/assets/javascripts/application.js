@@ -19,7 +19,6 @@
 //= require select2
 //= require moment
 //= require fullcalendar
-
 $(function () {
     function eventCalendar() {
         return $('#calendar').fullCalendar({});
@@ -32,6 +31,6 @@ $(function () {
     });
     $(document).on('turbolinks:before-cache', clearCalendar);
     $('#calendar').fullCalendar({
-        events: 'http://localhost:3300/dream_app/articles'
+        events: './articles.json'
     });
 });

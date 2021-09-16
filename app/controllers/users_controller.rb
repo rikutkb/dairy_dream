@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user,only:[:show]
+  before_action :set_user,only:[:show,:articles]
   def new
     @user = User.new
   end
@@ -12,13 +12,17 @@ class UsersController < ApplicationController
     end
   end
   def show
-    @articles = @user.articles
   end
   def index
     @users = User.all
   end
 
   def edit
+
+  end
+  def articles
+    @articles = @user.articles
+    render template: "articles/index"
   end
   private
     def user_params

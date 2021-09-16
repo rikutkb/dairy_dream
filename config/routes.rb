@@ -9,7 +9,13 @@ Rails.application.routes.draw do
   get 'login' =>"sessions#new"
   post 'login' =>"sessions#create"
   delete 'logout' =>"sessions#destroy"
-  resources :users,only: [:index,:show,:create,:edit]
+  resources :users,only: [:index,:create,:edit] 
+  resources :users,only: [:show] do
+    member do
+      get 'articles'
+    end
+  end
+
   resources :tags,only: [:index,:show,:create] do
     collection do
       get 'search'
