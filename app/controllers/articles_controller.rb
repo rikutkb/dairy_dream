@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
     def update
       @article.update(post_params)
       flash[:success] = "更新できました"
-      redirect_to users_path
+      redirect_to articles_path
     end
     def show
         @tags = @article.tags
