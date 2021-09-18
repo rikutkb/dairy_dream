@@ -14,13 +14,13 @@
 //= require activestorage
 //= require bootstrap
 //= require turbolinks
-//= require_tree .
 //= require jquery3
 //= require select2
 //= require moment
 //= require fullcalendar
 //= require popper
 //= require bootstrap-sprockets
+//= require_tree .
 
 $(function () {
     function eventCalendar() {

@@ -42,7 +42,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
-gem 'bootstrap', '~> 5.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
