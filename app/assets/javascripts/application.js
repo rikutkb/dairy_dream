@@ -34,6 +34,11 @@ $(function () {
     });
     $(document).on('turbolinks:before-cache', clearCalendar);
     $('#calendar').fullCalendar({
-        events: './articles.json'
+        events: './articles.json',
+        eventClick: function(info) {
+            window.location.href ="/dream_app/articles/"+info.id;
+            // change the border color just for fun
+            info.el.style.borderColor = 'red';
+          }
     });
 });

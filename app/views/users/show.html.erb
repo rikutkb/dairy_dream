@@ -2,11 +2,10 @@
 
 <h1><%= @user.name %>のユーザページ</h1>
 
-<h1>Diary Dream App</h1>
 <% if @user.id == current_user.id %>
-<%= link_to '新規投稿', root_url+'articles/new' %>
+<button class="btn btn-outline-success me-2" type="button"><%= link_to '新規投稿', root_url+'articles/new' %></button>
 <% end %>
 
-<%= link_to '夢日記一覧',root_url+'users/'+@user.id.to_s+'/articles' %>
+<button class="btn btn-outline-success me-2" type="button"><%= link_to '夢日記一覧',root_url+'users/'+@user.id.to_s+'/articles' %></button>
 
 

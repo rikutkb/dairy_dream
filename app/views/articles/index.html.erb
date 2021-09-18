@@ -2,6 +2,7 @@
 
 <h1>Diary Dream App</h1>
 <div id="calendar"></div>
+<%= link_to '新規投稿', root_url+'articles/new' %><br>
 
 <% if @articles.empty? then %>
     公開されている記事はありません。<br>
@@ -20,4 +21,3 @@
         </ul>
     <% end %>
 <% end %>
-<%= link_to '新規投稿', root_url+'articles/new' %>
