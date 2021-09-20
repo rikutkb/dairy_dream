@@ -60,5 +60,6 @@ Rails.application.configure do
   #config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.file_watcher = ActiveSupport::FileUpdateChecker
   config.relative_url_root = "/dream_app"
+  config.force_ssl = true
   ENV["RAILS_RELATIVE_URL_ROOT"]="/dream_app"
 end
