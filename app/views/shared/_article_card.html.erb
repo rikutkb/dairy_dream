@@ -16,6 +16,6 @@
         <button type="button" class="btn btn-outline-primary"><%= link_to tag.name,tag_path(tag),metthod: :get %></button>
         <% end %>
     <% end %><br>
-    <a href="#" class="btn btn-primary">Edit</a>
+    <%= link_to 'edit',edit_article_path(article),method: :get %>
     </div>
 </div>
