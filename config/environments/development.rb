@@ -61,4 +61,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::FileUpdateChecker
   config.relative_url_root = "/dream_app"
   ENV["RAILS_RELATIVE_URL_ROOT"]="/dream_app"
+  config.ssl_options = { redirect: { exclude: -> request { request.path =~ /healthcheck/ } } }
 end

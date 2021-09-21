@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <%= link_to "夢日記",   root_url %>
     <form class="d-flex">
-      <button class="btn btn-outline-success me-2" type="button"><%= link_to "Help",   root_url+'help' %></button>
+      <button class="btn btn-outline-success me-2" type="button"><%= url_for(controller: :static_pages,only_path: false,action: :home,protocol: :'https') %></button>
       <% if logged_in? %>
       <button class="btn btn-outline-success me-2" type="button"><%= link_to "Log out",logout_path,method: :delete %></button>
       <button class="btn btn-outline-success me-2" type="button"><%= link_to "User", @current_user %></button>
