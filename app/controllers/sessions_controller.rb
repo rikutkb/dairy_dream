@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     user = User.find_by(name:session_params[:name])
     if user && user.authenticate(session_params[:password])
       login(user)
-      redirect_to user_path(protocol: 'https')+'/articles'
+      redirect_to user_path(current_user,protocol: 'https')
     else
       flash.now[:danger] = 'invalid name or password'
       render new_article_path(protocol: 'https')
