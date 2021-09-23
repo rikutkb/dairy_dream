@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
             store_location
             flash[:danger] ="please login"
-            redirect_to login_url
+            redirect_to login_url(protocol: 'https')
         end
     end
 end
