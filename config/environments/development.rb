@@ -62,6 +62,5 @@ Rails.application.configure do
   config.relative_url_root = "/dream_app"
   ENV["RAILS_RELATIVE_URL_ROOT"]="/dream_app"
   ENV["HTTP_SCHEME"]="http"
-  config.force_ssl = true
-  config.ssl_options = false
+
 end
