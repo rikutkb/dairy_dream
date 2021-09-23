@@ -2,7 +2,7 @@
 
 <h1>Diary Dream App</h1>
 <div id="calendar"></div>
-<%= link_to '新規投稿', article_new_path(protocol: 'https') %><br>
+<%= link_to '新規投稿', new_article_path(protocol: 'https') %><br>
 
 <% if @articles.empty? then %>
     公開されている記事はありません。<br>
