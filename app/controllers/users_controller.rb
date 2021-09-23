@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to user_path(@user,protocol: 'https')+'/articles'
     else
-      render new_user_path(protocol: 'https')
+      render signup_path(protocol: 'https')
     end
   end
   def show
