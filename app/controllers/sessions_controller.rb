@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       redirect_to user_path(current_user,protocol: 'https')+'/articles'
     else
       flash.now[:danger] = 'invalid name or password'
-      render article_new_path(protocol: 'https')
+      render new_article_path(protocol: 'https')
     end
   end
   def destroy
