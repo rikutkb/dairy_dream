@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user+'/articles'
+      redirect_to user_path(@user,protocol: 'https')+'/articles'
     else
-      render 'new'
+      render new_user_path(protocol: 'https')
     end
   end
   def show

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <%= link_to "夢日記",   root_url %>
+    <%= link_to "夢日記",   root_url(protocol: 'https') %>
     <form class="d-flex">
       <button class="btn btn-outline-success me-2" type="button"><%= link_to "Home",root_path(protocol: 'https') %></button>
       <% if logged_in? %>
