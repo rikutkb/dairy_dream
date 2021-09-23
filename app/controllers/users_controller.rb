@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(@user,protocol: 'https')+'/articles'
+
+      redirect_to url_for(controller: :users,only_path: false,action: :articles,protocol: :'https')
     else
       render signup_path(protocol: 'https')
     end
