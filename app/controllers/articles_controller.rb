@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
         if logged_in?
             @article = current_user.articles.new
         else
-            redirect_to root_path
+            redirect_to root_path(protocol: 'https')
         end
 
     end
@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
           @article.tags_save(person_tags)
         end
         flash[:success] = "作成できました"
-        redirect_to articles_path
+        redirect_to articles_path(protocol: 'https')
       else
         render 'new'
       end
@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
     def update
       @article.update(post_params)
       flash[:success] = "更新できました"
-      redirect_to articles_path
+      redirect_to articles_path(protocol: 'https')
     end
     def show
         @tags = @article.tags
@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
           tags.each do |tag|
             tag.decrement(:citations,1)
           end
-          redirect_to request.referrer
+          redirect_to request.referrer(protocol: 'https')
 
         end
 

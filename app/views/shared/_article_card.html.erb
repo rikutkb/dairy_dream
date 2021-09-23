@@ -7,15 +7,15 @@
     場所:
     <% article.tags.each do |tag| %>
         <% if tag.kind == 0 %>
-            <button type="button" class="btn btn-outline-primary"><%= link_to tag.name,tag_path(tag),metthod: :get %></button>
+            <button type="button" class="btn btn-outline-primary"><%= link_to tag.name,tag_path(tag,protocol: 'https'),metthod: :get %></button>
         <% end %>
     <% end %><br>
     人物:
     <% article.tags.each do |tag| %>
         <% if tag.kind == 1 %>
-        <button type="button" class="btn btn-outline-primary"><%= link_to tag.name,tag_path(tag),metthod: :get %></button>
+        <button type="button" class="btn btn-outline-primary"><%= link_to tag.name,tag_path(tag,protocol: 'https'),metthod: :get %></button>
         <% end %>
     <% end %><br>
-    <%= link_to 'edit',edit_article_path(article),method: :get %>
+    <%= link_to 'edit',edit_article_path(article,protocol: 'https'),method: :get %>
     </div>
 </div>
