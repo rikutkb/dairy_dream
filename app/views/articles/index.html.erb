@@ -12,10 +12,10 @@
     <% @articles.each do |article| %>
         <ul>
             <li>
-                <%= link_to article_path(article.content,protocol: 'http'),article %>
+                <%= link_to article_path(article.content),article %>
                 作成日時：<%= article.created_at %>
-                <%= link_to 'edit',edit_article_path(article,protocol: 'http'),method: :get %>
-                <%= link_to 'delete',article_path(article,protocol: 'http'),method: :delete %>
+                <%= link_to 'edit',edit_article_path(article),method: :get %>
+                <%= link_to 'delete',article_path(article),method: :delete %>
 
             </li>
         </ul>
