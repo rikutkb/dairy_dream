@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
             store_location
             flash[:danger] ="please login"
-            redirect_to url_for(controller: :sessions,only_path: false,action: :login,protocol: :'https')
+            redirect_to url_for(controller: :sessions,action: :login)
         end
     end
 end

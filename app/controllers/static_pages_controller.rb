@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
     if current_user
       redirect_to user_path(current_user)
     else
-      redirect_to url_for(controller: :static_pages,only_path: false,action: :help,protocol: :'https')
+      redirect_to url_for(controller: :static_pages,only_path: false,action: :help)
     end
   end
 

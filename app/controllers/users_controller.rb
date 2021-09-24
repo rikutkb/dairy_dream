@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
 
-      redirect_to url_for(controller: :users,only_path: false,action: :articles,protocol: :'https')
+      redirect_to url_for(controller: :users,only_path: false,action: :articles)
     else
-      render signup_path(protocol: 'https')
+      render signup_path()
     end
   end
   def show
