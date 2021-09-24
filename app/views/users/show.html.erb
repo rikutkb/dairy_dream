@@ -6,6 +6,6 @@
 <button class="btn btn-outline-success me-2" type="button"><%= link_to '新規投稿', new_article_path(protocol: 'https') %></button>
 <% end %>
 
-<button class="btn btn-outline-success me-2" type="button"><%= link_to '夢日記一覧',user_path(@user,protocol: 'https')+/articles' %></button>
+<button class="btn btn-outline-success me-2" type="button"><%= link_to '夢日記一覧',article_user_path(@user,protocol: 'https') %></button>
 
 
