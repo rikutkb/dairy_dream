@@ -5,10 +5,10 @@ class SessionsController < ApplicationController
     user = User.find_by(name:session_params[:name])
     if user && user.authenticate(session_params[:password])
       login(user)
-      redirect_to url_for(controller: :users,id: user.id,action: :articles)
+      redirect_to user_path(current_user)+'/articles'
     else
       flash.now[:danger] = 'invalid name or password'
-      render new_article_path
+      render 'new'
     end
   end
   def destroy
