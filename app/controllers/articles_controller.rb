@@ -15,15 +15,13 @@ class ArticlesController < ApplicationController
     def create
       @article = current_user.articles.build(post_params)
       if @article.save
-        logger.debug "create start"
         place_tags = post_params_with_tags[:place_tag_ids]
-        logger.debug "#{place_tags}"
         if !place_tags.empty?
-          @article.tags_save(place_tags)
+          @article.tags_save(place_tags,0,current_user.id)
         end
         person_tags = post_params_with_tags[:person_tag_ids]
         if !person_tags.empty?
-          @article.tags_save(person_tags)
+          @article.tags_save(person_tags,1,current_user.id)
         end
         flash[:success] = "作成できました"
         redirect_to articles_path
