@@ -17,11 +17,11 @@ class ArticlesController < ApplicationController
       if @article.save
         place_tags = post_params_with_tags[:place_tag_ids]
         if !place_tags.empty?
-          @article.tags_save(place_tags,0,current_user.id)
+          @article.tags_save(place_tags,0,current_user)
         end
         person_tags = post_params_with_tags[:person_tag_ids]
         if !person_tags.empty?
-          @article.tags_save(person_tags,1,current_user.id)
+          @article.tags_save(person_tags,1,current_user)
         end
         flash[:success] = "作成できました"
         redirect_to articles_path

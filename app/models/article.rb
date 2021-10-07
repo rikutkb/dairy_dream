@@ -9,9 +9,7 @@ class Article < ApplicationRecord
   def tags_save(tag_list,kind,user)#todo refactor
     tag_list.each do |tag|
       if !tag.nil?
-        inspected_tag = Tag.find_by(name:tag,kind:kind,user:user)
-        
-        logger.debug "tag ass#{inspected_tag}"
+        inspected_tag = user.tags.find_by(name:tag,kind:kind)
         if !inspected_tag.nil?
           inspected_tag.increment!(:citations,1)
           self.tags.push(inspected_tag)
