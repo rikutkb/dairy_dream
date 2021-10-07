@@ -22,7 +22,11 @@ class UsersController < ApplicationController
 
   end
   def articles
-    @articles = @user.articles
+    if @user.id == current_user.id
+      @articles = current_user.articles
+    else
+      @articles = @user.articles.where(private: false)
+    end
     render template: "articles/index"
   end
   private
