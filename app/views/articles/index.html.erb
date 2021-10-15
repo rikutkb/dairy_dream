@@ -1,11 +1,23 @@
 <% provide(:title, '日記一覧') %>
 
 <h1>Diary Dream App</h1>
-<% @articles.each do |article| %>
-    <ul>
-        <li>
-            <%= article.content %>
-        </li>
-    </ul>
+<div id="calendar"></div>
+<%= link_to '新規投稿', new_article_path(protocol: 'https') %><br>
+
+<% if @articles.empty? then %>
+    公開されている記事はありません。<br>
+<% else %>
+    以下の記事が公開されています
+
+    <% @articles.each do |article| %>
+        <ul>
+            <li>
+                <%= link_to article.content, article_path(article) %>
+                作成日時：<%= article.created_at %>
+                <%= link_to 'edit',edit_article_path(article),method: :get %>
+                <%= link_to 'delete',article_path(article),method: :delete %>
+
+            </li>
+        </ul>
+    <% end %>
 <% end %>
-<%= link_to '新規投稿', root_url+'articles/new' %>

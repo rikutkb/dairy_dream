@@ -1,0 +1,9 @@
+version: '3'
+services:
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+  app:
+    environment:
+      RAILS_ENV: production

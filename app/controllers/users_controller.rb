@@ -1,24 +1,33 @@
 class UsersController < ApplicationController
-  before_action :set_user,only:[:show]
+  before_action :set_user,only:[:show,:articles]
   def new
     @user = User.new
   end
   def create
     @user = User.new(user_params)
     if @user.save
+      login(@user)
       redirect_to @user
     else
       render 'new'
     end
   end
   def show
-    @articles = @user.articles
   end
   def index
     @users = User.all
   end
 
   def edit
+
+  end
+  def articles
+    if @user.id == current_user.id
+      @articles = current_user.articles
+    else
+      @articles = @user.articles.where(private: false)
+    end
+    render template: "articles/index"
   end
   private
     def user_params

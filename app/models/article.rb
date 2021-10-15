@@ -6,10 +6,10 @@ class Article < ApplicationRecord
   validates:content,presence:true,length:{maximum:1000}
   validates:memo,length:{maximum:1000}
   validates:sleep_n,numericality:{only_integer:true,greater_than_or_equal_to:0}
-  def tags_save(tag_list)
+  def tags_save(tag_list,kind,user)#todo refactor
     tag_list.each do |tag|
       if !tag.nil?
-        inspected_tag = Tag.find_by(id:tag)
+        inspected_tag = user.tags.find_by(name:tag,kind:kind)
         if !inspected_tag.nil?
           inspected_tag.increment!(:citations,1)
           self.tags.push(inspected_tag)

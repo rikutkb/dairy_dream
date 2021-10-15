@@ -1,7 +1,10 @@
 <% provide(:title, 'Home') %>
 
 <h1>Home</h1>
-
+<% if logged_in? %>
+<%= link_to '新規投稿', root_url+'articles/new' %>
+<% end %>
+<br>
 <%= link_to 'ログイン',root_url+'login' %>
 <%= link_to 'サインアップ',root_url+'signup' %>
 

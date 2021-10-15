@@ -1,0 +1,21 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+    <h5 class="card-title">content:<%= article.content %></h5>
+    <p class="card-text">memo:<%= article.memo %></p>
+    <p class="card-text">日付:<%= article.day %></p>
+
+    場所:
+    <% article.tags.each do |tag| %>
+        <% if tag.kind == 0 %>
+            <button type="button" class="btn btn-outline-primary"><%= link_to tag.name,tag_path(tag),metthod: :get %></button>
+        <% end %>
+    <% end %><br>
+    人物:
+    <% article.tags.each do |tag| %>
+        <% if tag.kind == 1 %>
+        <button type="button" class="btn btn-outline-primary"><%= link_to tag.name,tag_path(tag),metthod: :get %></button>
+        <% end %>
+    <% end %><br>
+    <%= link_to 'edit',edit_article_path(article),method: :get %>
+    </div>
+</div>

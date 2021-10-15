@@ -1,11 +1,32 @@
+$(".js-tag_place").val([{id:0,text:"jfa"}]).trigger("change");
 
 $(document).on('turbolinks:load', function(){
+
+    function set_tags(){
+      var arrJson = $('.arr_json').val();
+      var arr = JSON.parse(arrJson);
+      arr.forEach(tag=>{
+        var data = {
+          id:tag.id,
+          text:tag.name
+        };
+        var opt = new Option(tag.name,tag.id,true,true);
+        if(tag.id==0){
+          $(".js-tag_person").append(opt).trigger('change');
+        }else{
+          $(".js-tag_place").append(opt).trigger('change');
+        }
+      })
+    }
+    if(location.pathname.split('/').slice(-1)[0]!="new"){
+        set_tags();
+    }
     function register_tag(e,kind){
       if( e.params.data.isNewFlag ) {
         var $select = $(this);
         $.ajax( {
             type: 'post',
-            url: '../tags',
+            url: '/dream_app/tags',
             data: { keyword: e.params.data.id ,kind:kind},
             dataType: 'json'
         } ).done( function( json ) {
@@ -18,7 +39,7 @@ $(document).on('turbolinks:load', function(){
     }
     function ajax_tmp(kind){
       return ajax_obj = {
-        url: "../tags/search",
+        url: "/dream_app/tags/search",
         dataType: 'json',
         delay: 250,
         data:function(params){
@@ -30,7 +51,7 @@ $(document).on('turbolinks:load', function(){
         processResults:function(data){
           return{
             results: $.map(data,function(obj){
-              return{id:obj.id,text:obj.name}
+              return{id:obj.name,text:obj.name}
             })
           }
         }

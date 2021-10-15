@@ -1,30 +1,19 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   root_url %></li>
-        <li><%= link_to "Help",   root_url+'help' %></li>
-        <% if logged_in? %>
-            <li><%= link_to "Log out",logout_path,method: :delete %></li>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <%= link_to "夢日記",   root_path %>
+    <form class="d-flex">
+      <button class="btn btn-outline-success me-2" type="button"><%= link_to "Home",root_path %></button>
+      <% if logged_in? %>
+      <button class="btn btn-outline-success me-2" type="button"><%= link_to "Log out",logout_path,method: :delete %></button>
+      <button class="btn btn-outline-success me-2" type="button"><%= link_to "User", user_path(@current_user) %></button>
 
-            <li><%= link_to "User", @current_user %></li>
-            <li class = "dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><%= link_to "Profile", current_user %></li>
-                    <li><%= link_to "Settings", '#' %></li>
-                    <li class="divider"></li>
-                    <li><%= link_to "Log out",root_url+logout_path,method: :delete %></li>
 
-                </ul>
-            </li>
+      <% else %>
+        <button class="btn btn-outline-success me-2" type="button"><%= link_to "Log in", login_path %></button>
+        <button class="btn btn-outline-success me-2" type="button"><%= link_to "Sign Up", signup_path %></button>
 
-        <% else %>
-            <li><%= link_to "Log in", root_url+'login' %></li>
 
-        <% end %>
-
-      </ul>
-    </nav>
+      <% end %>
+    </form>
   </div>
-</header>
+</nav>

@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
     before_action :logged_in_user,only:[:destroy,:create,:edit,:update]
     before_action :set_article,only:[:show,:destroy,:edit,:update]
     def index
-      @articles = Article.all.where(private:false)
+      @articles = current_user.articles
     end
     def new
         if logged_in?
@@ -17,14 +17,14 @@ class ArticlesController < ApplicationController
       if @article.save
         place_tags = post_params_with_tags[:place_tag_ids]
         if !place_tags.empty?
-          @article.tags_save(place_tags)
+          @article.tags_save(place_tags,0,current_user)
         end
         person_tags = post_params_with_tags[:person_tag_ids]
         if !person_tags.empty?
-          @article.tags_save(person_tags)
+          @article.tags_save(person_tags,1,current_user)
         end
         flash[:success] = "作成できました"
-        redirect_to root_url
+        redirect_to articles_path
       else
         render 'new'
       end
@@ -38,7 +38,7 @@ class ArticlesController < ApplicationController
     def update
       @article.update(post_params)
       flash[:success] = "更新できました"
-      redirect_to users_path
+      redirect_to articles_path
     end
     def show
         @tags = @article.tags

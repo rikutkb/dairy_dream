@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: dairy_dream_production
-  username: dairy_dream
-  password: <%= ENV['DAIRY_DREAM_DATABASE_PASSWORD'] %>
+  username: <%= ENV['DATABASE'] %>
+  password: <%= ENV['PASSWORD'] %>
+  host: db

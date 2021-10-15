@@ -4,8 +4,8 @@ services:
     container_name: db
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     volumes:
       - ./mysql-data/mysql:/var/lib/mysql
     ports:
@@ -13,6 +13,9 @@ services:
     user: "1000:50"
   app:
     build: .
+    environment:
+      PASSWORD: ${MYSQL_PASSWORD}
+      DATABASE: ${MYSQL_DATABASE}
     command: rails s -p 3300 -b '0.0.0.0'
     volumes:
       - .:/dairy_dream
