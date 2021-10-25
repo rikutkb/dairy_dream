@@ -49,6 +49,7 @@ $(document).on('turbolinks:load', function(){
           }
         },
         processResults:function(data){
+          console.log(data)
           return{
             results: $.map(data,function(obj){
               return{id:obj.name,text:obj.name}

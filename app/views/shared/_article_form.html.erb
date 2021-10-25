@@ -1,8 +1,10 @@
 <div class="col-md-6 col-md-offset-3">
    <%= form_with model: @article do |f| %>
         <div class="field">
-            <%= react_component("Tagsearch") %>
-
+            場所タグ
+            <%= react_component("Tagsearch",kind:0) %>
+            人物タグ
+            <%= react_component("Tagsearch",kind:1) %>
             <div class="form-group">
                 <%= f.label :場所タグ ,class:'form-control' %>
                 <%= f.collection_select :place_tag_ids, tag, :id, :name, { include_blank: "" }, multiple: true, class: "form-control js-tag_place" %>
