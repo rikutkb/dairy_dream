@@ -2,9 +2,9 @@
    <%= form_with model: @article do |f| %>
         <div class="field">
             場所タグ
-            <%= react_component("Tagsearch",{kind:0,tags:@article.tags}) %>
+            <%= react_component("Tagsearch",{kind:0,name:'article[place_tag_ids][]',tags:@article.tags}) %>
             人物タグ
-            <%= react_component("Tagsearch",{kind:1,tags:@article.tags}) %>
+            <%= react_component("Tagsearch",{kind:1,name:'article[person_tag_ids][]',tags:@article.tags}) %>
 
             <div class="form-group">
                 <%= f.label :内容 ,class:'form-control' %>

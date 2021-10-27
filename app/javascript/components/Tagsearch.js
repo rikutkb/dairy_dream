@@ -9,7 +9,7 @@ class Tagsearch extends React.Component {
     super(props);
     this.state = {
       candidates: [],
-      kind: this.props.kind
+      kind: this.props.kind,
     }
 
     this.fetchTags(this.props.kind,"")
@@ -40,6 +40,8 @@ class Tagsearch extends React.Component {
       });
     })
     .catch(e=>{
+
+      console.log(e)
     })
   }
   SelectedValue(kind){
@@ -54,7 +56,7 @@ class Tagsearch extends React.Component {
       <div>
         <CreatableSelect options={this.state.candidates}
         isMulti
-        name="tags"
+        name={this.props.name}
         isClearable
         className="basic-multi-select"
         classNamePrefix="select"
@@ -67,6 +69,7 @@ class Tagsearch extends React.Component {
 }
 Tagsearch.propTypes = {
   kind: PropTypes.number,
+  name: PropTypes.string,
   tags: PropTypes.array
 
 }
