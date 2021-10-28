@@ -6,7 +6,19 @@ class Article < ApplicationRecord
   validates:content,presence:true,length:{maximum:1000}
   validates:memo,length:{maximum:1000}
   validates:sleep_n,numericality:{only_integer:true,greater_than_or_equal_to:0}
-  def tags_save(tag_list,kind,user)#todo refactor
+  def update_tags(tag_list,kind,user)
+    self.delete_tags(kind)
+    self.save_tags(tag_list,kind,user)
+  end
+  def delete_tags(kind)
+    self.tags.each do |tag|
+      if tag.kind == kind
+        tag.decrement!(:citations,1)
+        self.tags.delete(tag)
+      end
+    end
+  end
+  def save_tags(tag_list,kind,user)#todo refactor
     tag_list.each do |tag|
       if tag.present?
         inspected_tag = user.tags.find_or_create_by(name:tag,kind:kind)

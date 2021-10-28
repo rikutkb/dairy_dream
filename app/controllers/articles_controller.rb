@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
     before_action :logged_in_user,only:[:destroy,:create,:edit,:update]
     before_action :set_article,only:[:show,:destroy,:edit,:update]
+    include ArticlesHelper
     def index
       @articles = current_user.articles
     end
@@ -17,11 +18,11 @@ class ArticlesController < ApplicationController
       if @article.save
         place_tags = post_params_with_tags[:place_tag_ids]
         if !place_tags.empty?
-          @article.tags_save(place_tags,0,current_user)
+          @article.save_tags(place_tags,0,current_user)
         end
         person_tags = post_params_with_tags[:person_tag_ids]
         if !person_tags.empty?
-          @article.tags_save(person_tags,1,current_user)
+          @article.save_tags(person_tags,1,current_user)
         end
         flash[:success] = "作成できました"
         redirect_to articles_path
@@ -37,6 +38,14 @@ class ArticlesController < ApplicationController
     end
     def update
       @article.update(post_params)
+      place_tags = post_params_with_tags[:place_tag_ids]
+      if !place_tags.empty?
+        @article.update_tags(place_tags,0,current_user)
+      end
+      person_tags = post_params_with_tags[:person_tag_ids]
+      if !person_tags.empty?
+        @article.update_tags(person_tags,1,current_user)
+      end
       flash[:success] = "更新できました"
       redirect_to articles_path
     end
