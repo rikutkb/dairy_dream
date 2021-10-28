@@ -8,8 +8,8 @@ class Article < ApplicationRecord
   validates:sleep_n,numericality:{only_integer:true,greater_than_or_equal_to:0}
   def tags_save(tag_list,kind,user)#todo refactor
     tag_list.each do |tag|
-      if !tag.nil?
-        inspected_tag = user.tags.find_by(name:tag,kind:kind)
+      if tag.present?
+        inspected_tag = user.tags.find_or_create_by(name:tag,kind:kind)
         if !inspected_tag.nil?
           inspected_tag.increment!(:citations,1)
           self.tags.push(inspected_tag)
