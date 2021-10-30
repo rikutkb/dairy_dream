@@ -23,6 +23,16 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api, format: 'json' do
+    namespace :v1 do
+      resources :articles
+      resources :users do
+        member do
+          get 'articles'
+        end
+      end
+    end
+  end
   resources :articles
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

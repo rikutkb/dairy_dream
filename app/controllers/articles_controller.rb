@@ -76,7 +76,7 @@ class ArticlesController < ApplicationController
         params.require(:article).permit(:content,:day,:memo,:sleep_n,:private,place_tag_ids: [],person_tag_ids: [])
       end
       def set_article
-        @article = Article.find(params[:id])
+        @article = current_user.articles.find(params[:id])
 
       end
 end
