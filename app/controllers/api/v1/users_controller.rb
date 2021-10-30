@@ -1,4 +1,4 @@
-require "#{Rails.root}/app/controllers/application_controller.rb"
+require_dependency "#{Rails.root}/app/controllers/application_controller.rb"
 module Api
     module V1
         class UsersController < ApplicationController

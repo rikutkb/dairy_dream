@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api, format: 'json' do
+    resource :session, only: %i[create destroy]
     namespace :v1 do
       resources :articles
       resources :users do
