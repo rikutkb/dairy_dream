@@ -18,7 +18,11 @@
     <% @articles.each do |article| %>
         <ul>
             <li>
-                <%= link_to article.content, article_path(article) %>
+                <% if article.content.length >= 100 %>
+                    <%= link_to article.content.slice(0,100)+'...', article_path(article) %>
+                <% else %>
+                    <%= link_to article.content, article_path(article) %>
+                <% end %>
                 作成日時：<%= article.created_at %>
                 <%= link_to 'edit',edit_article_path(article),method: :get %>
                 <%= link_to 'delete',article_path(article),method: :delete %>

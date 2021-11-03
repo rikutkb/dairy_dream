@@ -1,14 +1,3 @@
 <% provide(:title, '日記詳細') %>
-content:<%= @article.content %>
-<br>
-睡眠時間:<%= @article.sleep_n %>
-<br>
-memo:<%= @article.memo %>
-<br>
-場所タグ:
-<%= render partial:'tags/tags',locals:{tags:@tags,kind:0} %>
-<br>
-人物タグ:
-<%= render partial:'tags/tags',locals:{tags:@tags,kind:1} %>
-<br>
-<%= link_to 'edit',edit_article_path(@article),method: :get %>
+
+<%= render 'shared/article_card', article:@article %>
