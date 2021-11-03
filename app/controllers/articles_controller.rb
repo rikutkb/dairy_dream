@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
     before_action :set_article,only:[:show,:destroy,:edit,:update]
     include ArticlesHelper
     def index
-      @articles = current_user.articles
+      @articles = current_user.articles.paginate(:page => params[:page],:per_page => 10)
     end
     def new
         if logged_in?

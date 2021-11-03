@@ -4,10 +4,9 @@
 <div id="calendar"></div>
 <%= link_to '新規投稿', new_article_path(protocol: 'https') %><br>
 
-<% if @articles.empty? then %>
-    公開されている記事はありません。<br>
-<% else %>
+
     以下の記事が公開されています
+    <%= will_paginate  @articles %>
 
     <% @articles.each do |article| %>
         <ul>
@@ -20,4 +19,6 @@
             </li>
         </ul>
     <% end %>
-<% end %>
+
+
+    

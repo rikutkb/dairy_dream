@@ -23,13 +23,21 @@ class UsersController < ApplicationController
   end
   def articles
     if @user.id == current_user.id
-      @articles = current_user.articles
+      @articles = current_user.articles.reorder("#{sort_column} #{sort_direction}").paginate(:page => params[:page],:per_page => 10)
     else
-      @articles = @user.articles.where(private: false)
+      @articles = @user.articles.where(private: false).reorder("#{sort_column} #{sort_direction}").paginate(:page => params[:page],:per_page => 10)
+
     end
+    logger.debug(@articles)
     render template: "articles/index"
   end
   private
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+    end
+    def sort_column
+      %w[created_at updated_at day].include?(params[:sort]) ? params[:sort] : 'created_at'
+    end
     def user_params
       params.require(:user).permit(:name,:email,:password,:password_confirmation)
     end
