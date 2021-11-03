@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
   private
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
     end
     def sort_column
       %w[created_at updated_at day].include?(params[:sort]) ? params[:sort] : 'created_at'
