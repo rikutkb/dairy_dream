@@ -9,7 +9,7 @@
     <%= form_with url: articles_user_path, method: :get, local: true do |f| %>
         ソート:
         <%= select_tag 'sort', options_for_select({ "作成日" => "created_at", "夢を見た日" => "day","更新日" => "updated_at" }) %>
-        <%= select_tag 'direction', options_for_select({ "新しい順" => "asc", "古い順" => "desc"}) %>
+        <%= select_tag 'direction', options_for_select({ "新しい順" => "desc", "古い順" => "asc"}) %>
         <%= submit_tag 'search' %>
 
     <% end %>
