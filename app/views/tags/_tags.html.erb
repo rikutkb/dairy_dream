@@ -1,10 +1,10 @@
-<% @tags.each do |tag| %>
+<% tags.each do |tag| %>
     <% if tag.kind == kind %>
     <ul>
         <li>
             <%= tag.name %><br>
             引用数:<%= tag.citations %>
-            <%= link_to '記事一覧:',tag_path(tag) %>
+            <%= link_to '記事一覧へ',tag_path(tag) %>
         </li>
     </ul>
     <% end %>

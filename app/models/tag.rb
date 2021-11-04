@@ -1,5 +1,6 @@
 class Tag < ApplicationRecord
   belongs_to :user
+  default_scope->{order(citations: :DESC)}
   has_many :article_tags
   has_many :articles ,through: :article_tags
   validates:name,presence:true,length:{maximum:255}

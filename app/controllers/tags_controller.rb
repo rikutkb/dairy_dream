@@ -3,10 +3,17 @@ class TagsController < ApplicationController
     before_action :logged_in_user,only:[:create,:search,:index,:show]
 
     def index
-        @tags = current_user.tags
+        @query = params[:tag]
+        if @query
+            @tags = current_user.tags.where("name LIKE ?","%#{@query}%")
+        else
+            @tags = current_user.tags
+        end
+
+
     end
     def show
-        @tag = current_user.tags.find_by(id:params[:id])
+        @tag = current_user.tags.find_by("id = ? ", params[:id])
         if !@tag.nil?
             @articles = @tag.articles
         else
