@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
           @article.save_tags(person_tags,1,current_user)
         end
         flash[:success] = "作成できました"
-        redirect_to articles_user_path
+        redirect_to articles_user_path(current_user)
       else
         render 'new'
       end
@@ -47,7 +47,7 @@ class ArticlesController < ApplicationController
         @article.update_tags(person_tags,1,current_user)
       end
       flash[:success] = "更新できました"
-      redirect_to articles_user_path
+      redirect_to articles_user_path(current_user)
     end
     def show
         @tags = @article.tags
@@ -76,7 +76,11 @@ class ArticlesController < ApplicationController
         params.require(:article).permit(:content,:day,:memo,:sleep_n,:private,place_tag_ids: [],person_tag_ids: [])
       end
       def set_article
-        @article = Article.find(params[:id])
+        if params[:id]
+          @article = Article.find(params[:id])
+        else
+          @article = Article.find(current_user.id)
+        end
 
       end
 end
