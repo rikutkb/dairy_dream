@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
           @article.save_tags(person_tags,1,current_user)
         end
         flash[:success] = "作成できました"
-        redirect_to articles_path
+        redirect_to articles_user_path
       else
         render 'new'
       end
@@ -47,7 +47,7 @@ class ArticlesController < ApplicationController
         @article.update_tags(person_tags,1,current_user)
       end
       flash[:success] = "更新できました"
-      redirect_to articles_path
+      redirect_to articles_user_path
     end
     def show
         @tags = @article.tags
