@@ -77,7 +77,7 @@ class ArticlesController < ApplicationController
       end
       def set_article
         if params[:id]
-          @article = Article.find(params[:id])
+          @article = current_user.articles.find(params[:id])
         else
           @article = Article.find(current_user.id)
         end
